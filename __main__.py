@@ -106,14 +106,14 @@ class UserInput:
 
 
 def main():
-    
+
     user_input = UserInput()
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-e',
         action='store_true',
-        help='Edit user input file'
+        help='Edit user input file and create new schedule'
     )
     parser.add_argument(
         '-s',
