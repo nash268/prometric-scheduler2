@@ -106,6 +106,8 @@ class UserInput:
 
 
 def main():
+    
+    user_input = UserInput()
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -130,7 +132,6 @@ def main():
 
 
     # load values from user_input.txt file
-    user_input = UserInput()
     exam_name, month_year, selected_city_indices, start_date, end_date = user_input.userfile()
     selected_city_indices = [int(index) for index in selected_city_indices.split(' ')]
     selected_cities = [city_centers[index - 1] for index in selected_city_indices]
