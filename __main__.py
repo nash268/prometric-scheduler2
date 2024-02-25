@@ -29,7 +29,7 @@ print("------------------------------------------------")
 
 operating_system = platform.system()
 script_path = os.getcwd()
-script_name = os.path.basename(script_path)
+script_name = "__main__.py"
 city_centers = ['Karachi, Pakistan', 'Lahore, Pakistan']
 
 class UserInput:
