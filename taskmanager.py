@@ -1,3 +1,5 @@
+import subprocess
+
 # class for managing tasks on windows
 class WindowsTasks:
     def __init__(self):
