@@ -85,11 +85,6 @@ class UserInput:
 
 
 def main():
-    # load values from user_input.txt file
-    user_input = UserInput()
-    exam_name, month_year, selected_city_indices, start_date, end_date = user_input.userfile()
-    selected_city_indices = [int(index) for index in selected_city_indices.split(' ')]
-    selected_cities = [city_centers[index - 1] for index in selected_city_indices]
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -111,6 +106,13 @@ def main():
     if args.s: 
         user_input.create_schedule(operating_system)
         exit()
+
+
+    # load values from user_input.txt file
+    user_input = UserInput()
+    exam_name, month_year, selected_city_indices, start_date, end_date = user_input.userfile()
+    selected_city_indices = [int(index) for index in selected_city_indices.split(' ')]
+    selected_cities = [city_centers[index - 1] for index in selected_city_indices]
 
 
     # create Proscheduler instance
