@@ -28,7 +28,7 @@ class UserInput:
 
             # Display available cities to the user and prompt for selection
             print("Available cities:")
-            for index, city in enumerate(city_centes.keys(), start=1):
+            for index, city in enumerate(city_centers.keys(), start=1):
                 print(f"{index}. {city}")
 
             # input for cities
