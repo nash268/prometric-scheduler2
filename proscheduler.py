@@ -19,7 +19,7 @@ class Proscheduler():
   def halt(self, method):
     self.driver.quit()
   
-  def check_prometric(self, exam_name, addresses, month_year):
+  def get_dates(self, exam_name, addresses, month_year):
     dates_found = {}
     month, year = month_year.split(' ')
     last_date = calender.monthrange(int(year), int(month))[1]
