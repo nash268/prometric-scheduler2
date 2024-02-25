@@ -126,7 +126,7 @@ def main():
 
 
 if __name__ == "__main__":
-    python_version = sys.version.split()[0]
+    python_version = sys.version_info
 
     if python_version < (3, 6):
         print(f'Python version {python_version} is not supported. Please use Python 3.6 or later.')
