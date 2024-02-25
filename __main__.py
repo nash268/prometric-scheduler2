@@ -6,6 +6,11 @@ from proscheduler import Proscheduler
 from taskmanager import WindowsTasks, CronJobs
 from customui import sanitised_input
 
+operating_system = platform.system()
+script_path = os.getcwd()
+script_name = os.path.basename(script_path)
+city_centes = ['Karachi, Pakistan', 'Lahore, Pakistan']
+
 class UserInput:
     def __init__(self):
         pass
@@ -23,7 +28,7 @@ class UserInput:
 
             # Display available cities to the user and prompt for selection
             print("Available cities:")
-            for index, city in enumerate(city_centers.keys(), start=1):
+            for index, city in enumerate(city_centes.keys(), start=1):
                 print(f"{index}. {city}")
 
             # input for cities
@@ -32,7 +37,9 @@ class UserInput:
             start_date = sanitised_input("Enter start date (1): ", int, 1, 31)
             end_date = sanitised_input("Enter end date (31): ", int, 1, 31)
 
-                # Write input values to file for later use
+            self.create_schedule(operating_system)
+
+            # Write input values to file for later use
             with open("user_input.txt", "w") as file:
                 file.write(f"{exam_name},{month_year},{selected_city_indices},{start_date},{end_date}")
                 print("Values stored for later use in user_input.txt.")
@@ -49,6 +56,12 @@ class UserInput:
                     print("\033[94mfor more info visit https://crontab.guru website\033[0m")
                     print("------------------------------------------------------------")
                     schedule = input("how frequently you want to run script?: ")
+                    print("")
+
+                    # create a schedule using crontab
+                    cron = CronJobs()
+                    cron.delete()
+                    cron.create(operating_system, schedule, script_path, script_name)
 
             if (operating_system == "Windows"):
                 schedule_task = sanitised_input("Schedule script to run automatically(yes/no): ", str.lower, range_=('yes', 'no'))
@@ -57,14 +70,25 @@ class UserInput:
                     print("------------------------------------------------------")
                     print("for example, To run script after every 30 minutes input 30")
                     schedule = sanitised_input("Input number of minutes (30): ", int, 5)
-            return schedule
+
+                    # create task on windows
+                    tasks = WindowsTasks()
+                    if not tasks.exists(task_name):
+                        tasks.create(task_name, script_path, script_name, schedule)
+                    else:
+                        tasks.delete(task_name)
+                        tasks.create(task_name, script_path, script_name, schedule)
+
+            
+
 
 
 def main():
-
-    operating_system = platform.system()
-    script_path = os.getcwd()
-    script_name = os.path.basename(script_path)
+    # load values from user_input.txt file
+    user_input = UserInput()
+    user_input.userfile()
+    selected_city_indices = [int(index) for index in selected_city_indices.split(' ')]
+    selected_cities = [city_centes[index - 1] for index in selected_city_indices]
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -80,29 +104,17 @@ def main():
     args = parser.parse_args()
 
     if args.e:
-        user_input = UserInput()
+        if os.path.exists("user_input.txt"):
+            os.remove("user_input.txt")
         user_input.userfile()
     if args.s: 
-        schedule = UserInput().create_schedule(operating_system)
-        if operating_system == "Windows":
-            task_name = "Prometric-Scheduler"
-            tasks = WindowsTasks()
-            if not tasks.task_exists():
-                tasks.create_task(task_name, schedule, script_path, script_name)
-            else:
-                tasks.delete_task(task_name)
-                tasks.create_task(task_name, schedule, script_path, script_name)
-
-        if operating_system == "Linux" or operating_system == "Darwin":
-            cron = CronJobs()
-            cron.delete_job()
-            cron.create_job(operating_system, schedule, script_path, script_name)
+        user_input.create_schedule(operating_system)
 
 
     # create Proscheduler instance
     ps = Proscheduler()
     ps.start()
-    dates = ps.get_dates(exam_name, addresses, month_year)
+    dates = ps.get_dates(exam_name, selected_cities, month_year)
     print(dates)
     ps.halt()
 
