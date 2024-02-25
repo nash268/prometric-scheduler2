@@ -1,4 +1,5 @@
 from proscheduler import Proscheduler 
+from taskmanager import WindowsTasks, CronJobs
 
 exam_name = 'STEP1'
 addresses = ['Karachi, Pakistan', 'Lahore, Pakistan']
