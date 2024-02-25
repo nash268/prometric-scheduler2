@@ -9,7 +9,7 @@ from customui import sanitised_input
 operating_system = platform.system()
 script_path = os.getcwd()
 script_name = os.path.basename(script_path)
-city_centes = ['Karachi, Pakistan', 'Lahore, Pakistan']
+city_centers = ['Karachi, Pakistan', 'Lahore, Pakistan']
 
 class UserInput:
     def __init__(self):
@@ -43,6 +43,7 @@ class UserInput:
             with open("user_input.txt", "w") as file:
                 file.write(f"{exam_name},{month_year},{selected_city_indices},{start_date},{end_date}")
                 print("Values stored for later use in user_input.txt.")
+        return exam_name, month_year, selected_city_indices, start_date, end_date
 
     def create_schedule(self, operating_system):
             if (operating_system == "Linux" or operating_system == "Darwin"):
@@ -86,9 +87,9 @@ class UserInput:
 def main():
     # load values from user_input.txt file
     user_input = UserInput()
-    user_input.userfile()
+    exam_name, month_year, selected_city_indices, start_date, end_date = user_input.userfile()
     selected_city_indices = [int(index) for index in selected_city_indices.split(' ')]
-    selected_cities = [city_centes[index - 1] for index in selected_city_indices]
+    selected_cities = [city_centers[index - 1] for index in selected_city_indices]
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -109,14 +110,15 @@ def main():
         user_input.userfile()
     if args.s: 
         user_input.create_schedule(operating_system)
+        exit()
 
 
     # create Proscheduler instance
-    ps = Proscheduler()
+    """ps = Proscheduler()
     ps.start()
     dates = ps.get_dates(exam_name, selected_cities, month_year)
     print(dates)
-    ps.halt()
+    ps.halt()"""
 
 
 
