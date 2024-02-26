@@ -124,8 +124,8 @@ def main():
     args = parser.parse_args()
 
     if args.e:
-        if os.path.exists("user_input.txt"):
-            os.remove("user_input.txt")
+        if os.path.exists(os.path.join(script_dir, userfile_name)):
+            os.remove(os.path.join(script_dir, userfile_name))
         user_input.userfile()
     if args.s: 
         user_input.create_schedule(operating_system)
