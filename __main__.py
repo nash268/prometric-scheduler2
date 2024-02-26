@@ -28,8 +28,9 @@ print("Let's get started!")
 print("------------------------------------------------")
 
 operating_system = platform.system()
-script_path = os.getcwd()
+script_dir = os.fspath(__file__).rsplit(os.sep, 1)[0]
 script_name = "__main__.py"
+userfile_name = "user_input.txt"
 city_centers = ['Karachi, Pakistan', 'Lahore, Pakistan']
 
 class UserInput:
@@ -38,7 +39,7 @@ class UserInput:
     
     def userfile(self):
         try:
-            with open("user_input.txt", "r") as file:
+            with open(os.path.join(script_dir, userfile_name), "r") as file:
                 # If file exists, read values from it
                 exam_name, month_year, selected_city_indices, start_date, end_date= file.read().split(',')
                 print("Values loaded from previous session file user_input.txt.")
@@ -61,7 +62,7 @@ class UserInput:
             self.create_schedule(operating_system)
 
             # Write input values to file for later use
-            with open("user_input.txt", "w") as file:
+            with open(os.path.join(script_dir, userfile_name), "w") as file:
                 file.write(f"{exam_name},{month_year},{selected_city_indices},{start_date},{end_date}")
                 print("Values stored for later use in user_input.txt.")
         return exam_name, month_year, selected_city_indices, start_date, end_date
@@ -83,7 +84,7 @@ class UserInput:
                     # create a schedule using crontab
                     cron = CronJobs()
                     cron.delete()
-                    cron.create(operating_system, schedule, script_path, script_name)
+                    cron.create(operating_system, schedule, script_dir, script_name)
 
             if (operating_system == "Windows"):
                 schedule_task = sanitised_input("Schedule script to run automatically(yes/no): ", str.lower, range_=('yes', 'no'))
@@ -96,10 +97,10 @@ class UserInput:
                     # create task on windows
                     tasks = WindowsTasks()
                     if not tasks.exists(task_name):
-                        tasks.create(task_name, script_path, script_name, schedule)
+                        tasks.create(task_name, script_dir, script_name, schedule)
                     else:
                         tasks.delete(task_name)
-                        tasks.create(task_name, script_path, script_name, schedule)
+                        tasks.create(task_name, script_dir, script_name, schedule)
 
             
 
