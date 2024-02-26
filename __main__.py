@@ -45,7 +45,7 @@ class UserInput:
         except FileNotFoundError:
             # If file doesn't exist, prompt user for input
             exam_name = sanitised_input("Enter exam name (STEP1/STEP2): ", str.upper, range_=('STEP1', 'STEP2'))
-            month_year = sanitised_input("Enter month and year (3 2024): ", str)
+            month_year = sanitised_input("Enter month and year (03 2024): ", str, length_=7)
 
             # Display available cities to the user and prompt for selection
             print("Available cities:")
