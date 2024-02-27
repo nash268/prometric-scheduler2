@@ -7,22 +7,27 @@ from taskmanager import WindowsTasks, CronJobs
 from customui import sanitised_input
 
 prometric_logo = """
-  _____                          _        _      
- |  __ \                        | |      (_)     
- | |__) | __ ___  _ __ ___   ___| |_ _ __ _  ___ 
- |  ___/ '__/ _ \| '_ ` _ \ / _ \ __| '__| |/ __|
- | |   | | | (_) | | | | | |  __/ |_| |  | | (__ 
- |_|   |_|  \___/|_| |_| |_|\___|\__|_|  |_|\___|
-                                                 
-                                                 
+
+ ____                           _        _      
+|  _ \ _ __ ___  _ __ ___   ___| |_ _ __(_) ___ 
+| |_) | '__/ _ \| '_ ` _ \ / _ \ __| '__| |/ __|
+|  __/| | | (_) | | | | | |  __/ |_| |  | | (__ 
+|_|__ |_|  \___/|_| |_| |_|\___|\__|_|  |_|\___|
+/ ___|  ___| |__   ___  __| |_   _| | ___ _ __  
+\___ \ / __| '_ \ / _ \/ _` | | | | |/ _ \ '__| 
+ ___) | (__| | | |  __/ (_| | |_| | |  __/ |    
+|____/ \___|_| |_|\___|\__,_|\__,_|_|\___|_|    
+
+
 """
 
 print(prometric_logo)
 print("Welcome to the Test Center Availability Checker!")
 print("------------------------------------------------")
 print("This script helps you check for available test center slots for your exam.")
-print("You'll be prompted to provide some initial information, such as the exam name, month and year,")
-print("and date range to search for available slots.")
+print("You'll be prompted to provide some initial information, such as the exam name,")
+print("month and year, and date range to search for available slots. Also how often")
+print("you want to run script automatically.")
 print("Once dates found it will play alert.mp3")
 print("Let's get started!")
 print("------------------------------------------------")
