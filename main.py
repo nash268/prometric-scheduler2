@@ -2,9 +2,9 @@ import os
 import sys
 import platform
 import argparse
-from proscheduler import Proscheduler 
-from taskmanager import WindowsTasks, CronJobs
-from customui import sanitised_input
+from utils.proscheduler import Proscheduler 
+from utils.taskmanager import WindowsTasks, CronJobs
+from utils.customui import sanitised_input
 
 prometric_logo = """
 
