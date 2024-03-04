@@ -12,17 +12,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
 class Proscheduler():
-  def start(self, method):
+  def start(self):
     self.driver = webdriver.Chrome()
     self.vars = {}
   
-  def halt(self, method):
+  def halt(self):
     self.driver.quit()
   
   def get_dates(self, exam_name, addresses, month_year):
     dates_found = {}
     month, year = month_year.split(' ')
-    last_date = calender.monthrange(int(year), int(month))[1]
+    last_date = calendar.monthrange(int(year), int(month))[1]
     # Test name: proscheduler2
     # Step # | name | target | value
     # 1 | open | / | 

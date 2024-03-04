@@ -144,11 +144,11 @@ def main():
 
 
     # create Proscheduler instance
-    """ps = Proscheduler()
+    ps = Proscheduler()
     ps.start()
     dates = ps.get_dates(exam_name, selected_cities, month_year)
     print(dates)
-    ps.halt()"""
+    ps.halt()
 
 
 
