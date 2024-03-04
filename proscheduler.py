@@ -30,7 +30,8 @@ class Proscheduler():
     # 2 | setWindowSize | 683x720 | 
     self.driver.set_window_size(683, 720)
     # 3 | click | css=.action-card:nth-child(2) > a:nth-child(1) > .img-responsive | 
-    self.driver.find_element(By.CSS_SELECTOR, ".action-card:nth-child(2) > a:nth-child(1) > .img-responsive").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".action-card:nth-child(2) > a:nth-child(1) > .img-responsive").click()
+    element = driver.find_element(By.XPATH, '//img[@src="/dist/assets/images/SearchAvailability.png"]').click()
     # 4 | click | id=test_sponsor | 
     self.driver.find_element(By.ID, "test_sponsor").click()
     # 5 | select | id=test_sponsor | label=National Board of Medical Examiners
