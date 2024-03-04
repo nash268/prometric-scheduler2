@@ -34,7 +34,7 @@ print("------------------------------------------------")
 
 operating_system = platform.system()
 script_dir = os.fspath(__file__).rsplit(os.sep, 1)[0]
-script_name = "__main__.py"
+script_name = "main.py"
 userfile_name = "user_input.txt"
 city_centers = ['Karachi, Pakistan', 'Lahore, Pakistan']
 
