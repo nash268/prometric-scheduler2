@@ -22,13 +22,6 @@ class Proscheduler():
   
   def get_dates(self, exam_name, addresses, month_year):
 
-    if exam_name == 'STEP1':
-        test_name = 'Step 1 - United States Medical Licensing Examination'
-    elif exam_name == 'STEP2':
-        test_name = 'Step 2 - United States Medical Licensing Examination'
-    elif exam_name == 'STEP3':
-        test_name = 'Step 3 - United States Medical Licensing Examination'
-
     dates_found = {}
     month, year = month_year.split(' ')
     last_date = calendar.monthrange(int(year), int(month))[1]
@@ -65,13 +58,29 @@ class Proscheduler():
     select = Select(dropdown)
     select.select_by_visible_text(exam_name)
 
+    if exam_name == 'STEP1':
+        test_name = 'Step 1 - United States Medical Licensing Examination'
+    elif exam_name == 'STEP2':
+        test_name = 'Step 2 - United States Medical Licensing Examination'
+    elif exam_name == 'STEP3':
+        test_name = 'Step 3 - United States Medical Licensing Examination'
+
     # 8 | click | id=testSelector | 
-    self.driver.find_element(By.ID, "testSelector").click()
+    test_selector_btn = WebDriverWait(self.driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "testSelector"))
+    )
+    test_selector_btn.click()
     # 9 | select | id=testSelector | label=Step 1 - United States Medical Licensing Examination
-    dropdown = self.driver.find_element(By.ID, "testSelector")
-    dropdown.find_element(By.XPATH, f"//option[. = '{test_name}']").click()
+    dropdown = WebDriverWait(self.driver, 10).until(
+        EC.visibility_of_element_located((By.ID, "testSelector"))
+    )
+    select = Select(dropdown)
+    select.select_by_visible_text(test_name)
     # 10 | click | id=nextBtn | 
-    self.driver.find_element(By.ID, "nextBtn").click()
+    next_btn = WebDriverWait(self.driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "nextBtn"))
+    )
+    next_btn.click()
     # 11 | type | id=searchLocation | Karachi, Pakistan
     i = 0
     active_links = False
