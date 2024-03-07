@@ -76,6 +76,8 @@ class Proscheduler():
     )
     select = Select(dropdown)
     select.select_by_visible_text(test_name)
+    # scroll down
+    self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     self.driver.find_element(By.XPATH, f"//*[text()='{test_name}']").click()
     # 10 | click | id=nextBtn | 
     next_btn = WebDriverWait(self.driver, 10).until(
