@@ -27,14 +27,17 @@ class Proscheduler():
     # Step # | name | target | value
     # 1 | open | / | 
     self.driver.get("https://proscheduler.prometric.com/")
-    
+
     # wait for button and click it
     avail_btn = WebDriverWait(self.driver, 10).until(
        EC.element_to_be_clickable((By.XPATH, '//img[@src="/dist/assets/images/SearchAvailability.png"]'))
     )
     avail_btn.click()
     # 4 | click | id=test_sponsor | 
-    self.driver.find_element(By.ID, "test_sponsor").click()
+    test_sponser_btn = WebDriverWait(self.driver, 10).until(
+        EC.element_to_be_clickable((By.ID, 'test_sponsor'))
+    )
+    test_sponser_btn.click()
     # 5 | select | id=test_sponsor | label=National Board of Medical Examiners
     dropdown = self.driver.find_element(By.ID, "test_sponsor")
     dropdown.find_element(By.XPATH, "//option[. = 'National Board of Medical Examiners']").click()
