@@ -90,9 +90,8 @@ class Proscheduler():
     for city in addresses:
         dates_in_city = []
         # Enter City in field
-        self.driver.find_element(By.ID, "searchLocation").send_keys(city)
         location_field = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located((By.ID, "searhcLocation"))
+            EC.visibility_of_element_located((By.ID, "searchLocation"))
         )
         location_field.send_keys(city)
         # 12 | type | id=undefined | 06/01/2024
