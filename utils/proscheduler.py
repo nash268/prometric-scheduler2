@@ -76,6 +76,7 @@ class Proscheduler():
     )
     select = Select(dropdown)
     select.select_by_visible_text(test_name)
+    self.driver.find_element(By.XPATH, f"//*[text()='{test_name}']").click()
     # 10 | click | id=nextBtn | 
     next_btn = WebDriverWait(self.driver, 10).until(
         EC.element_to_be_clickable((By.ID, "nextBtn"))
