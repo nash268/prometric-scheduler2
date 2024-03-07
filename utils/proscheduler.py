@@ -31,7 +31,7 @@ class Proscheduler():
     self.driver.set_window_size(683, 720)
     # wait for button and click it
     avail_btn = WebDriverWait(self.driver, 10).until(
-       self.driver.find_element(By.XPATH, '//img[@src="/dist/assets/images/SearchAvailability.png"]')
+       EC.element_to_be_clickable((By.XPATH, '//img[@src="/dist/assets/images/SearchAvailability.png"]'))
     )
     avail_btn.click()
     # 4 | click | id=test_sponsor | 
@@ -104,7 +104,7 @@ class Proscheduler():
         # check for dates here and append them to a list
         try:
             WebDriverWait(self.driver, 10).until(
-                available_dates = self.driver.find_elements_by_css_selector('strong[_ngcontent-c12=""]')
+                available_dates = EC.visibilty_of_element_located((By.XPATH, '//strong[@_ngcontent-c12=""]'))
             )
             dates = [element.text for element in available_dates]
             dates_in_city.append(dates)
