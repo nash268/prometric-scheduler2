@@ -81,7 +81,7 @@ class Proscheduler():
         # check for dates here and append them to a list
         try:
             available_dates = WebDriverWait(self.driver, 10).until(
-                self.driver.find_elements_by_css_selector('strong[_ngcontent-c12=""]')
+                EC.visibilty_of_element_located((By.XPATH, '//strong[@_ngcontent-c12=""]'))
             )
             dates = [element.text for element in available_dates]
             dates_in_city.append(dates)
