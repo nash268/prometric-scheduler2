@@ -27,8 +27,7 @@ class Proscheduler():
     # Step # | name | target | value
     # 1 | open | / | 
     self.driver.get("https://proscheduler.prometric.com/")
-    # 2 | setWindowSize | 683x720 | 
-    self.driver.set_window_size(683, 720)
+    
     # wait for button and click it
     avail_btn = WebDriverWait(self.driver, 10).until(
        EC.element_to_be_clickable((By.XPATH, '//img[@src="/dist/assets/images/SearchAvailability.png"]'))
