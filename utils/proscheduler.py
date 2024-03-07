@@ -42,7 +42,8 @@ class Proscheduler():
     dropdown = WebDriverWait(self.driver, 10).until(
         EC.visibility_of_element_located((By.ID, "test_sponsor"))
     )
-    dropdown.select_by_xpath("//option[. = 'National Board of Medical Examiners']")
+    select = Select(dropdown)
+    select.select_by_visible_text("National Board of Medical Examiners")
     # 6 | click | id=testProgram | 
     self.driver.find_element(By.ID, "testProgram").click()
     # 7 | select | id=testProgram | label=STEP1
