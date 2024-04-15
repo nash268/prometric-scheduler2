@@ -1,3 +1,3 @@
-Get started by customizing your environment (defined in the .idx/dev.nix file) with the tools and IDE extensions you'll need for your project!
+**Not functional yet.**
 
-Learn more at https://developers.google.com/idx/guides/customize-idx-env
+see: [prometric-scheduler](https://github.com/nash268/prometric-scheduler)
