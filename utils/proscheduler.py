@@ -145,7 +145,7 @@ class Proscheduler():
 
         dates_found.update[(city, dates_in_city)]
 
-    if active_links:
+    if len(dates_found) > 0:
         return dates_found
     else:
         return False

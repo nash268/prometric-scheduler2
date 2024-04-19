@@ -1,3 +1,7 @@
+# progress bar for terminal apps
+# total = number of total iterations
+# iteration = current iteraion
+# increament "iteration" as the code progresses to completion
 def print_progress_bar(iteration, total, bar_length=50):
     percent = "{0:.1f}".format(100 * (iteration / float(total)))
     filled_length = int(bar_length * iteration // total)
@@ -10,7 +14,8 @@ def print_progress_bar(iteration, total, bar_length=50):
 # usage examples of sanitised_input():
 # age = sanitised_input("Enter your age: ", int, 1, 101)
 # answer = sanitised_input("Enter your answer: ", str.lower, range_=('a', 'b', 'c', 'd'))
-def sanitised_input(prompt, type_=None, min_=None, max_=None, range_=None, length_=None):
+# options = sanitised_input("Select toppings for pizza(separated by space): ", str.lower, subsetof_=('tomato', 'onion', 'kabab'))
+def sanitised_input(prompt, type_=None, min_=None, max_=None, range_=None, length_=None, subsetof_=None):
     if min_ is not None and max_ is not None and max_ < min_:
         raise ValueError("min_ must be less than or equal to max_.")
     while True:
@@ -41,5 +46,7 @@ def sanitised_input(prompt, type_=None, min_=None, max_=None, range_=None, lengt
                         str(range_[-1])
                     ))
                     print(template.format(expected))
+        elif (subsetof_ is not None) and (not(set(ui.split(' ')) <= set(subsetof_))):
+            print(f"Input must be a subset of {subsetof_}")
         else:
             return ui
