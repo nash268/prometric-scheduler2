@@ -1,7 +1,11 @@
+# imports from python modules
 import os
 import sys
 import platform
 import argparse
+from pathlib import Path
+
+# imports from my personal modules located in utils folder
 from utils.proscheduler import Proscheduler 
 from utils.taskmanager import WindowsTasks, CronJobs
 from utils.customui import sanitised_input
@@ -33,8 +37,8 @@ print("Let's get started!")
 print("------------------------------------------------")
 
 operating_system = platform.system()
-script_dir = os.fspath(__file__).rsplit(os.sep, 1)[0]
-script_name = "main.py"
+script_name = __file__
+script_dir = Path(script_name).resolve().parent
 userfile_name = "user_input.txt"
 city_centers = ['Karachi, Pakistan', 'Lahore, Pakistan']
 
@@ -158,8 +162,8 @@ def main():
 if __name__ == "__main__":
     python_version = sys.version_info
 
-    if python_version < (3, 6):
-        print(f'Python version {python_version} is not supported. Please use Python 3.6 or later.')
+    if python_version < (3, 10):
+        print(f'Python version {python_version} is not supported. Please use Python 3.10 or later.')
         sys.exit(1)
 
     main()
