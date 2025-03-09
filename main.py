@@ -7,7 +7,6 @@ from pathlib import Path
 
 # imports from my personal modules located in utils folder
 from utils.proscheduler import Proscheduler 
-from utils.userinput import UserInput
 
 PROMETRIC_LOGO = """
 
