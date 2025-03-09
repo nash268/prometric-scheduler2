@@ -45,45 +45,7 @@ city_centers = ['Karachi, Pakistan', 'Lahore, Pakistan']
 
 
 def main():
-
-    user_input = UserInput()
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-e',
-        action='store_true',
-        help='Edit user input file and create new schedule'
-    )
-    parser.add_argument(
-        '-s',
-        action='store_true',
-        help='Create new schedule'
-    )
-    args = parser.parse_args()
-
-    if args.e:
-        if os.path.exists(os.path.join(script_dir, USERFILE_NAME)):
-            os.remove(os.path.join(script_dir, USERFILE_NAME))
-        user_input.userfile()
-    if args.s: 
-        user_input.create_schedule(operating_system)
-        exit()
-
-
-    # load values from user_input.txt file
-    exam_name, month_year, selected_city_indices, start_date, end_date = user_input.userfile()
-    selected_city_indices = [int(index) for index in selected_city_indices.split(' ')]
-    selected_cities = [city_centers[index - 1] for index in selected_city_indices]
-
-
-    # create Proscheduler instance
-    ps = Proscheduler()
-    ps.start()
-    dates = ps.get_dates(exam_name, selected_cities, month_year)
-    print(dates)
-    ps.halt()
-
-
+    pass
 
 
 
