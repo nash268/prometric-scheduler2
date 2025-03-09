@@ -9,7 +9,7 @@ from pathlib import Path
 from utils.proscheduler import Proscheduler 
 from utils.userinput import UserInput
 
-prometric_logo = """
+PROMETRIC_LOGO = """
 
  ____                           _        _      
 |  _ \ _ __ ___  _ __ ___   ___| |_ _ __(_) ___ 
@@ -24,7 +24,7 @@ prometric_logo = """
 
 """
 
-print(prometric_logo)
+print(PROMETRIC_LOGO)
 print("Welcome to the Test Center Availability Checker!")
 print("------------------------------------------------")
 print("This script helps you check for available test center slots for your exam.")
@@ -35,10 +35,11 @@ print("Once dates found it will play alert.mp3")
 print("Let's get started!")
 print("------------------------------------------------")
 
+USERFILE_NAME = "user_input.txt"
+
 operating_system = platform.system()
 script_name = __file__
 script_dir = Path(script_name).resolve().parent
-userfile_name = "user_input.txt"
 city_centers = ['Karachi, Pakistan', 'Lahore, Pakistan']
 
 
@@ -61,8 +62,8 @@ def main():
     args = parser.parse_args()
 
     if args.e:
-        if os.path.exists(os.path.join(script_dir, userfile_name)):
-            os.remove(os.path.join(script_dir, userfile_name))
+        if os.path.exists(os.path.join(script_dir, USERFILE_NAME)):
+            os.remove(os.path.join(script_dir, USERFILE_NAME))
         user_input.userfile()
     if args.s: 
         user_input.create_schedule(operating_system)
