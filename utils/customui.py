@@ -1,16 +1,3 @@
-# progress bar for terminal apps
-# total = number of total iterations
-# iteration = current iteraion
-# increament "iteration" as the code progresses to completion
-def print_progress_bar(iteration, total, bar_length=50):
-    percent = "{0:.1f}".format(100 * (iteration / float(total)))
-    filled_length = int(bar_length * iteration // total)
-    bar = '=' * filled_length + '-' * (bar_length - filled_length)
-    print()
-    print(f'\rProgress: [{bar}] {percent}% complete', end='', flush=True)
-    print()
-
-
 # usage examples of sanitised_input():
 # age = sanitised_input("Enter your age: ", int, 1, 101)
 # answer = sanitised_input("Enter your answer: ", str.lower, range_=('a', 'b', 'c', 'd'))
