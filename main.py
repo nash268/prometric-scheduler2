@@ -6,7 +6,6 @@ import argparse
 from pathlib import Path
 
 # imports from my personal modules located in utils folder
-from utils import proscheduler
 from utils.proscheduler import Proscheduler 
 
 PROMETRIC_LOGO = """
